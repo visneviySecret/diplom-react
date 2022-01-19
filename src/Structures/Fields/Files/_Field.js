@@ -3,16 +3,16 @@ import Header from './_Header'
 import AddFile from './_AddFile'
 import List from './_List'
 
-export default function Team(){
+export default function Files(){
     const [files, setFiles] = React.useState([
-        {id: 1, fileContent: ''},
-        {id: 2, fileContent: ''},
+        {id: 1, content: ''},
+        {id: 2, content: ''},
     ])
-
+    console.log(files)
 
 function addNewFile(){
     setFiles(
-    files.concat({id: Date.now(), fileContent: ''})
+    files.concat({id: Date.now(), content: ''})
     )
 }
 

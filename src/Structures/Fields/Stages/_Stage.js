@@ -2,7 +2,8 @@ import React from 'react'
 import imgPlus from '../../../images/mini_plus.svg'
 import Task from './_Task'
 
-export default function(props){
+export default function Stages(props) {
+    props.tasks[props.iteration].map((task) =>task.map(item => console.log(item.id)))
     return(
     <div>
         <div className="structure-panele-move"> 
@@ -12,7 +13,7 @@ export default function(props){
         </div>
 
         <div className='stages-list'>
-            {props.stage.tasks.map((task) => <Task task={task} key={task.id} onChange={props.onToggle}/>)}     
+            {props.tasks[props.iteration].map((task) =>task.map(item => { return <Task task={item} key={item.id} onChange={props.onToggle}/>}))}     
         </div>
         <div className="stages-adder">
             <img src={imgPlus} alt="plus" className="mini-plus" onClick={() => props.addTask(props.stage.id)}/>

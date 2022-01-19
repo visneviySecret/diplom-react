@@ -249,6 +249,9 @@ a:hover{
     color: #193C50;
     border: 0px solid;
 }
+.button:hover{
+    background-color: var(--color-hover-blue);
+}
 .arrow{
     padding: 212px 27px;
     margin-top: 57px;
@@ -944,3 +947,65 @@ input::-webkit-clear-button {
 }
 
 .main{position:relative}.economic-title{display:flex;margin-left:120px;margin-top:35px;margin-bottom:5px}.economic-title div:nth-child(2){margin-left:135px}.economic-title div:nth-child(3){margin-left:100px}.economic-title div:nth-child(4){margin-left:150px}.economic-data-string{display:flex;margin-bottom:14px}.economic-data-string .increment-number{background-color:#2d607c;width:30px;height:25px;border-radius:8px;text-align:center;color:#fff;font-size:18px;padding-top:5px;margin-top:4px}.economic-data-string .economic-data::-moz-placeholder{color:#bdd3cc;padding-left:18px;font-size:18px;font-weight:700}.economic-data-string .economic-data:-ms-input-placeholder{color:#bdd3cc;padding-left:18px;font-size:18px;font-weight:700}.economic-data-string .economic-data::placeholder{color:#bdd3cc;padding-left:18px;font-size:18px;font-weight:700}.economic-data-string .economic-data{border:none;border-radius:6px;height:30px}.economic-data-string .economic-button{background-color:#bdd3cc;text-align:left;padding-left:20px;font-size:18px;color:#2d607c;font-weight:700;margin-bottom:50px}.economic-data-string div:nth-child(1){margin-left:23px}.economic-data-string div:nth-child(2){margin-left:20px}.economic-data-string div:nth-child(3),.economic-data-string div:nth-child(4),.economic-data-string div:nth-child(5){margin-left:15px}.economic-data-string .plus-img{margin-top:4px}.economic-data-string .data-name{width:227px}.economic-data-string .data-quantity{width:71px}.economic-data-string .data-price,.economic-data-string .data-link{width:170px}.economic-total{display:flex}.economic-total .total-block{text-align:center;padding-top:3px;font-size:18px;min-width:69px;height:27px;border-radius:6px}.economic-total .total{background-color:#fdba1a;margin-right:31px}.economic-total .summ{background-color:#bdd3cc}.economic-total-block{position:absolute;bottom:30px;right:240px}
+
+.user-form{
+    background-color: #BDD3CC;
+    border-radius: 10px;
+    margin-left: 31px;
+    margin-right: 31px;
+    margin-top: 21px;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    font-size: 23px;
+    color: #193C50;
+    display: none
+}
+.user-form-active {
+    display: block;
+}
+.form{
+    display: none !important;
+}
+.form-active {
+    display: block
+}
+.input-wrapper {
+    width: 210px;
+    position: relative;
+    margin: 0;
+    text-align: center;
+    margin-left: 17px;
+  }
+.input-file {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+.input-file-button-text {
+  line-height: 1;
+  margin-top: 1px;
+}
+.input-file-button {
+  width: 100%;
+  max-width: 210px;
+  height: 30px;
+  background: white;
+  color: var(--color-dark-blue);
+  font-size: 18px;
+  font-weight: 700;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0px 0px 0px 15px;
+  margin: 0 auto;
+}

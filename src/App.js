@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Panel from './Structures/Panel'
 import Navigation from './Structures/Navigation'
 import MainBody from './Structures/MainBody'
@@ -14,8 +14,9 @@ import imgLeftArrow from "./images/Left button.png"
 import imgRightArrow from "./images/Right button.png"
 
 function App() {
+  const [progress, setProgress] = useState (70)
 
-  const [tabs, setTabs] = React.useState (
+  const [tabs, setTabs] = useState (
     [
         {id: 1, active: false, title: 'Меню', menu: 'menu'},
         {id: 2, active: true, title: 'Команда', menu: '', page: <Team />},
@@ -29,7 +30,7 @@ function App() {
     ]
 )  
 
-let [page, setPage] = React.useState(tabs[1].page)
+let [page, setPage] = useState(tabs[1].page)
 
 function newPageId (id){
   tabs.map(tab => tab.id === id ? tab.active != tab.active : '')
@@ -37,7 +38,7 @@ function newPageId (id){
 }
   return (
     <div>
-      <Panel />
+      <Panel progress={progress}/>
 
       <Navigation tabs={tabs} changePage={newPageId}/>
 

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import imgHomeButton from '../images/Home button.svg'
 
-export default function Panel(){
+export default function Panel(props){
+    
     return(
         <div className='panel'>
             <div>
@@ -11,10 +12,10 @@ export default function Panel(){
                 <input type="text" placeholder="Название проекта..." className="project-name"/>  
             </div>
             <div className="value">
-                    60%
+                    {props.progress || 0}%
             </div>
             <div className="progress">
-                <progress min="0" max="100" value="60"></progress>
+                <progress min="0" max="100" value={props.progress}></progress>
                 <div className="progress-value"></div>
                 <div className="progress-bg"><div className="progress-bar"></div></div>
             </div>    

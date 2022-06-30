@@ -33,7 +33,7 @@ export default function ({ index, onCreateTitle, onCreateQuant, onCreatePrice, o
     
 
     return (
-        <form className="economic-data-string form">
+        <form className="economic-data-string">
                         <div className="increment-number">{index+1}</div>                          
                         <div><input onChange={event => {submitHandlerTitle(event.target.value)}} type="text" placeholder="Имя" className="economic-data data-name"/></div>      
                         <div><input onKeyPress={event => 

@@ -1,30 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from './_Header'
 import AddFile from './_AddFile'
 import List from './_List'
 
-export default function Files(){
+export default function Files({ data, setData }) {
     const [files, setFiles] = React.useState([
-        {id: 1, content: ''},
-        {id: 2, content: ''},
+        { id: 1, content: '' },
+        { id: 2, content: '' },
     ])
-    console.log(files)
 
-function addNewFile(){
-    setFiles(
-    files.concat({id: Date.now(), content: ''})
-    )
-}
+    useEffect(() => {
+        setData(data[7] = files)
+    }, [files])
 
-function deleteFile(id){
-    setFiles(files.filter(file => file.id !== id))
-}
+    function addNewFile() {
+        setFiles(
+            files.concat({ id: Date.now(), content: '' })
+        )
+    }
 
-    return(
+    function deleteFile(id) {
+        setFiles(files.filter(file => file.id !== id))
+    }
+
+    return (
         <div className="main">
             <Header />
             <div className="files-body">
-                <List files={files} deleteFile={deleteFile}/>
+                <List files={files} deleteFile={deleteFile} />
                 <AddFile addFile={addNewFile} />
             </div>
         </div>

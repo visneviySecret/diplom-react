@@ -2,36 +2,81 @@ import React from 'react'
 import Header from './_Header'
 import AddPerson from './_AddPerson'
 import List from './_List'
+import {
+    useQuery,
+    useMutation,
+} from '@apollo/client'
+import { GetPersonsQuery, AddPersonQuery, DeletePersonsQuery, UpdatePersonQuery } from '../../../queries/TeamQueries'
 
-export default function Team({ data, setData }) {
-    const [persons, setPersons] = React.useState([
-        { id: 1, icon: {}, personName: '', role: '' },
-        { id: 2, icon: {}, personName: '', role: '' },
-    ])
+function Team() {
+    const { data } = useQuery(GetPersonsQuery)
 
-    React.useEffect(() => {
-        setData(data[1] = persons)
-    }, [persons])
+    const [addPerson,
+    ] = useMutation(AddPersonQuery,
+        { refetchQueries: [{ query: GetPersonsQuery }, 'GetPersonsQuery'] }
+    )
+    const [updatePerson,
+    ] = useMutation(UpdatePersonQuery,
+        { refetchQueries: [{ query: GetPersonsQuery }, 'GetPersonsQuery'] }
+    )
+    const [deletePerson] = useMutation(DeletePersonsQuery,
+        { refetchQueries: [{ query: GetPersonsQuery }, 'GetPersonsQuery'] }
+    )
 
+    function updateName(newName, id) {
+        updatePerson({
+            variables: {
+                projectId: "test",
+                id: id,
+                name: newName
+            }
+        })
+    }
+    function updateRole(newRole, id) {
+        updatePerson({
+            variables: {
+                projectId: "test",
+                id: id,
+                role: newRole
+            }
+        })
+    }
 
     function addNewPerson() {
-        setPersons(
-            persons.concat({ id: Date.now(), icon: {}, personName: '', role: '' })
-        )
-
+        addPerson({
+            variables: {
+                name: '',
+                role: '',
+                avatar: '',
+                projectId: 'test',
+            }
+        })
     }
 
-    function deletePerson(id) {
-        setPersons(persons.filter(person => person.id !== id))
+    function deletePersonHandler(id) {
+        deletePerson({
+            variables: {
+                id: id
+            }
+        })
     }
 
-    return (
-        <div className="main">
-            <Header />
-            <div className="table files-body">
-                <List persons={persons} deletePerson={deletePerson} />
-                <AddPerson props={persons} addPerson={addNewPerson} />
+    if (data) {
+        let listLength = data.persons.length
+        return (
+
+            <div className="main" >
+                <Header />
+                <div className="table files-body">
+                    <List persons={data.persons} deletePerson={deletePersonHandler} updateName={updateName} updateRole={updateRole} listLength={listLength} />
+                    <AddPerson addPerson={addNewPerson} listLength={listLength} />
+                </div>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return <div></div>
+    }
+
 }
+
+export default Team

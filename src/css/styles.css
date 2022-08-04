@@ -252,6 +252,10 @@ a:hover{
 .button:hover{
     background-color: var(--color-hover-blue);
 }
+.left-arrow, .right-arrow {
+    border: 0 solid;
+    background-color: white;
+}
 .arrow{
     padding: 212px 27px;
     margin-top: 57px;

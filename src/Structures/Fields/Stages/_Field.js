@@ -7,7 +7,7 @@ import Develop from './Develop'
 import Release from './Release'
 import Final from './Final'
 
-export default function ({ data, setData }) {
+export default function Stages({ data, setData }) {
     const [stages, setStages] = React.useState(
         [
             { id: 0, title: 'I Концепция' },

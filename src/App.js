@@ -14,8 +14,10 @@ import Files from './Structures/Fields/Files/_Field'
 import imgLeftArrow from "./images/Left button.png"
 import imgRightArrow from "./images/Right button.png"
 
+
 function App() {
   const [progress, setProgress] = useState(70)
+  const [currentPageId, setCurrentPageId] = useState(2)
   const [data, setData] = useState([
     [
       { id: 0, title: 'I Концепция', tasks: [{ id: 0, isChecked: false, task: '', term: '', roles: '' }] },
@@ -48,10 +50,10 @@ function App() {
     ]
   ])
 
-  const [tabs] = useState(
+  const [tabs, setTabs] = useState(
     [
       { id: 1, active: true, title: 'Меню', menu: 'menu', page: <Menu data={data} /> },
-      { id: 2, active: false, title: 'Команда', menu: '', page: <Team data={data} setData={setData} /> },
+      { id: 2, active: false, title: 'Команда', menu: '', page: <Team local_data={data} setData={setData} /> },
       { id: 3, active: false, title: 'Проблема', menu: '', page: <Problem data={data} setData={setData} /> },
       { id: 4, active: false, title: 'Цель', menu: '', page: <Goal data={data} setData={setData} /> },
       { id: 5, active: false, title: 'MVP', menu: '', page: <MVP data={data} setData={setData} /> },
@@ -62,11 +64,43 @@ function App() {
     ]
   )
 
-  let [page, setPage] = useState(tabs[0].page)
+  let [page, setPage] = useState(tabs[2].page)
+
+  useEffect(() => {
+    setPage(page = tabs[currentPageId].page)
+  }, [currentPageId])
 
   function newPageId(id) {
-    tabs.map(tab => tab.id === id ? tab.active != tab.active : '')
-    setPage(page = tabs[id - 1].page)
+    changePage(id)
+    setCurrentPageId(id - 1)
+  }
+  function changePage(id) {
+    const newTabs = tabs.map(tab => {
+      if (tab.id === id) {
+        return { active: true, ...tab }
+      } else {
+        return { active: false, ...tab }
+      }
+    })
+    setTabs(newTabs)
+
+  }
+
+  function decreaseTab() {
+    if (currentPageId === 0) {
+      setCurrentPageId(8)
+    } else {
+      setCurrentPageId(currentPageId - 1)
+    }
+    changePage(currentPageId)
+  }
+  function increaseTab() {
+    if (currentPageId === 8) {
+      setCurrentPageId(0)
+    } else {
+      setCurrentPageId(currentPageId + 1)
+    }
+    changePage(currentPageId)
   }
   return (
     <div>
@@ -76,23 +110,30 @@ function App() {
 
       <div className="card">
         <div>
-          <a href="Page_files.html" className="left-arrow">
+          <button
+            className="left-arrow"
+            onClick={() => decreaseTab()}
+          >
             <img src={imgLeftArrow} alt="Left button" className="arrow" />
-          </a>
+          </button>
         </div>
 
         {page}
 
         <div>
-          <a href="Page_problem.html" className="right-arrow">
+          <button
+            className="right-arrow"
+            onClick={() => increaseTab()}
+          >
             <img src={imgRightArrow} alt="Right button" className="arrow right-arrow" />
-          </a>
+          </button>
         </div>
 
       </div>
 
 
     </div>
+
   );
 }
 

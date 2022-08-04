@@ -61,7 +61,7 @@ export default function Economic({ data, setData }) {
                     <div className="strings">Ссылка</div>
                 </div>
                 <List items={items} onCreateTitle={writeTitle} onCreateQuant={writeQuantity} onCreatePrice={writePrice} onCreateHttp={writeHttp} deleteItem={deleteItem} total={total} />
-                <Add addItem={addNewItem} />
+                <Add addItem={addNewItem} listLength={items.length} />
             </div>
 
             <div className="economic-total economic-total-block">

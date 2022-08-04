@@ -1,8 +1,10 @@
 {
   "name": "diplom-react",
+  "homepage": "https://visneviySecret.github.io/react-gh-pages",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.6.9",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -10,6 +12,8 @@
     "config": "^3.3.7",
     "express": "^4.18.1",
     "express-validator": "^6.14.0",
+    "gh-pages": "^4.0.0",
+    "graphql": "^16.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.2",
     "react": "^17.0.2",
@@ -18,6 +22,8 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "node": "node app.js",
     "server": "nodemon app.js",

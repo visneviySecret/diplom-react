@@ -3,11 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './css/styles.css';
 import App from './App';
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache
+} from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql",
+  cache: new InMemoryCache(),
+})
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </React.StrictMode>
+  ,
   document.getElementById('root')
 );
 
